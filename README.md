@@ -1,0 +1,1 @@
+Simple mobile task application for NikoletaArts
