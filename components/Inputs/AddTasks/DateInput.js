@@ -5,15 +5,16 @@ import { getDate } from "../../../functions/getData";
 import { Colors } from "../../../constants/styles";
 import { FontAwesome5 } from '@expo/vector-icons';
 
-function DateInput(handleInput) {
+function DateInput({ handleInput, value, name }) {
+    
     return (
         <View style={styles.inputWrapper}>
             <Text style={styles.label}>DATE</Text>
             <View style={styles.dateWrapper}>
                 <TextInput
                     style={styles.input}
-                    onChange={handleInput}
-                    value={getDate()}
+                    onChangeText={(text) => handleInput(name, text)}
+                    value={value ? value : getDate()}
                 />
                 <FontAwesome5 name="calendar-alt" size={24} color="black" />
             </View>

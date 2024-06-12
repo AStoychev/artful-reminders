@@ -6,10 +6,10 @@ import CheckButton from "../../UI/CheckButton";
 
 import { Colors } from "../../../constants/styles";
 
-const RED = {backgroundColor: '#FF2D2D', color: '#FFFFFF'}
-const BLUE = { backgroundColor: '#E1E4F8', color: '#8885DA' };
+const ORANGE = { backgroundColor: '#F0E6EC', color: '#FA6A00' };
+const GREEN = { backgroundColor: '#2CC09C', color: '#FFFFFF' };
 
-function StatusInput({handleInput, name}) {
+function PaymentInput({ handleInput, name }) {
     const [status, setStatus] = useState(null);
 
     function handleStatus(data) {
@@ -19,16 +19,16 @@ function StatusInput({handleInput, name}) {
 
     return (
         <View style={styles.inputWrapper}>
-            <Text style={styles.label}>STATUS</Text>
+            <Text style={styles.label}>PAYMENT</Text>
             <View style={styles.buttonWrapper}>
-                <CheckButton status={status} title="COMPLETED" backgroundColor={BLUE.backgroundColor} color={BLUE.color} handleStatus={handleStatus}/>
-                <CheckButton status={status} title="IN PROGRESS" backgroundColor={RED.backgroundColor} color={RED.color} handleStatus={handleStatus}/>
+                <CheckButton status={status} title="PAID" backgroundColor={ORANGE.backgroundColor} color={ORANGE.color} handleStatus={handleStatus} />
+                <CheckButton status={status} title="UNPAID" backgroundColor={GREEN.backgroundColor} color={GREEN.color} handleStatus={handleStatus} />
             </View>
         </View>
     )
 }
 
-export default StatusInput;
+export default PaymentInput;
 
 const styles = StyleSheet.create({
     inputWrapper: {

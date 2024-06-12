@@ -1,19 +1,19 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
 import { Colors } from "../../../constants/styles";
-import { FontAwesome5 } from '@expo/vector-icons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-function DescriptionInput(handleInput) {
+function DescriptionInput({ handleInput, value, name }) {
     return (
         <View style={styles.inputWrapper}>
             <Text style={styles.label}>DESCRIPTION</Text>
             <View style={styles.dateWrapper}>
                 <TextInput
                     style={styles.input}
-                    onChange={handleInput}
-                    value=''
+                    onChangeText={(text) => handleInput(name, text)}
+                    value={value}
                 />
-                <FontAwesome5 name="list-alt" size={24} color="black" />
+                <MaterialCommunityIcons name="tag-text-outline" size={24} color="black" />
             </View>
         </View>
     )

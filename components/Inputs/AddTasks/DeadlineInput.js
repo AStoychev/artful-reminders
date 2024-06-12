@@ -5,15 +5,15 @@ import { getDate } from "../../../functions/getData";
 import { Colors } from "../../../constants/styles";
 import { FontAwesome } from '@expo/vector-icons';
 
-function DeadlinInput(handleInput) {
+function DeadlinInput({ handleInput, value, name }) {
     return (
         <View style={styles.inputWrapper}>
             <Text style={styles.label}>DEADLINE</Text>
             <View style={styles.dateWrapper}>
                 <TextInput
                     style={styles.input}
-                    onChange={handleInput}
-                    value={getDate()}
+                    onChangeText={(text) => handleInput(name, text)}
+                    value={value ? value : getDate()}
                 />
                 <FontAwesome name="clock-o" size={24} color="black" />
             </View>

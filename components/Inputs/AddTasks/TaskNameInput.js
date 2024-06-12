@@ -2,14 +2,15 @@ import { View, TextInput, StyleSheet } from "react-native";
 
 import { Colors } from "../../../constants/styles";
 
-function TaskNameInput(handleInput) {
+function TaskNameInput({ handleInput, value, name }) {
+
     return (
         <View style={styles.inputWrapper}>
             <TextInput
                 style={styles.input}
-                onChange={handleInput}
-                value=""
                 placeholder="Task Name"
+                value={value}
+                onChangeText={(text) => handleInput(name, text)}
             />
         </View>
     )
@@ -24,6 +25,6 @@ const styles = StyleSheet.create({
         borderColor: Colors.primaryDarkWhite
     },
     input: {
-        
+
     }
 });
