@@ -5,5 +5,7 @@ export const fontStyle = {
 export const Colors = {
     primaryDarkWhite: '#E3E2E2',
     primaryLabelWhite: '#AAAAAA',
-    purpleBackgeound: '#3B378E',
+    purpleBackground: '#46436E',
+    // purpleBackground: '#3B378E',
+    disabledButton: '#DDDDDD'
 }

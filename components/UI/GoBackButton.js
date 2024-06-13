@@ -4,11 +4,19 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { Colors } from "../../constants/styles";
 
-function GoBackButton() {
+function GoBackButton({screen}) {
     const navigation = useNavigation();
 
+    function handlePress() {
+        if(screen === 'Home') {
+            navigation.navigate('Home')
+        } else {
+            navigation.goBack()
+        }
+    }
+
     return (
-        <Pressable style={styles.container} onPress={() => navigation.goBack()}>
+        <Pressable style={styles.container} onPress={handlePress}>
             <Ionicons name="arrow-back-outline" size={24} color={Colors.primaryDarkWhite} />
         </Pressable>
     )

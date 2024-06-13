@@ -1,9 +1,8 @@
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 
 import { Colors } from "../../constants/styles";
 
-function CreateEditButton({ text, onPress }) {
-
+function DisabledCreateEditButton({ text, onPress }) {
     return (
         <Pressable onPress={onPress} style={({pressed}) => pressed && styles.pressed}>
             <View style={styles.buttonContainer}>
@@ -11,10 +10,9 @@ function CreateEditButton({ text, onPress }) {
             </View>
         </Pressable>
     )
-
 }
 
-export default CreateEditButton;
+export default DisabledCreateEditButton;
 
 const styles = StyleSheet.create({
     pressed: {
@@ -23,7 +21,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: '100%',
         justifyContent: 'center',
-        backgroundColor: Colors.purpleBackground,
+        backgroundColor: Colors.disabledButton,
         flexDirection: 'row',
         borderRadius: 6,
         paddingTop: 10,

@@ -1,24 +1,30 @@
 import axios from "axios";
 
-const URL = process.env.EXPO_PUBLIC_URL
+const URL = process.env.EXPO_PUBLIC_URL;
 
 export async function createTask(taskData) {
     const response = await axios.post(URL + '/task.json', taskData);
     const id = response.data.name;
-    return id
-}
+    return id;
+};
 
-// async function createTask(title, date, deadline, description, complete, paid) {
-//     const response = await axios.post(mode === 'signUp' ? URL_SIGN_UP : URL_SIGN_IN, {
-//         title: title,
-//         date: date,
-//         deadline: deadline,
-//         description: description,
-//         complete: complete,
-//         paid: paid
-//     });
-//     // const token = response.data.idToken;
-//     // return token;
+export async function getAll() {
+    const response = await axios.get(URL + '/task.json');
+    const tasks = [];
 
-//     return response
-// }
+    for (const key in response.data) {
+        const taskObject = {
+            id: key,
+            title: response.data[key].title,
+            date: response.data[key].data,
+            deadline: response.data[key].deadline,
+            description: response.data[key].description,
+            complete: response.data[key].complete,
+            paid: response.data[key].paid,
+        };
+        tasks.push(taskObject);
+    }
+    const reverseTasks = tasks.reverse();
+
+    return reverseTasks;
+};

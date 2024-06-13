@@ -2,13 +2,14 @@ import { View, TextInput, StyleSheet } from "react-native";
 
 import { Colors } from "../../../constants/styles";
 
-function TaskNameInput({ handleInput, value, name }) {
+function TaskNameInput({ handleInput, value, name, disabledColor }) {
 
     return (
         <View style={styles.inputWrapper}>
             <TextInput
                 style={styles.input}
-                placeholder="Task Name"
+                placeholder="Task Name *"
+                placeholderTextColor={disabledColor}
                 value={value}
                 onChangeText={(text) => handleInput(name, text)}
             />
