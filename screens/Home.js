@@ -3,13 +3,15 @@ import HomePageButtons from "../components/UI/HomePageButtons";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { Colors } from "../constants/styles";
+
 const image = '../assets/backgrounds/One.jpg';
 
 function Home() {
     const navigation = useNavigation();
 
     function goToScreen(screen) {
-        navigation.navigate(screen)
+        navigation.navigate(screen, {newValue: 'add'})
     }
 
     return (

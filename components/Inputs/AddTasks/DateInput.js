@@ -1,7 +1,5 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-import { getDate } from "../../../functions/getData";
-
 import { Colors } from "../../../constants/styles";
 import { FontAwesome5 } from '@expo/vector-icons';
 
@@ -14,7 +12,7 @@ function DateInput({ handleInput, value, name }) {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => handleInput(name, text)}
-                    value={value ? value : getDate()}
+                    value={value}
                 />
                 <FontAwesome5 name="calendar-alt" size={24} color="black" />
             </View>

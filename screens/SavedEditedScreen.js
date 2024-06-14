@@ -1,4 +1,5 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import SaveEditedButton from "../components/UI/SaveEditedButton";
 
@@ -6,7 +7,12 @@ import CheckMark from "../components/UI/CheckMark";
 
 import { Colors } from "../constants/styles";
 
-function SavedEditedScreen({handleSetSend}) {
+function SavedEditedScreen() {
+    const navigation = useNavigation();
+
+    function navigateToAllTask() {
+        navigation.navigate('AllTasks')
+    }
 
     return (
         <View style={styles.container}>
@@ -26,7 +32,7 @@ function SavedEditedScreen({handleSetSend}) {
                 <Text style={styles.text}>Your task has been saved!</Text>
                 <SaveEditedButton
                     text='OK'
-                    onPress={handleSetSend}
+                    onPress={navigateToAllTask}
                 />
             </View>
         </View>

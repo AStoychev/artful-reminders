@@ -1,7 +1,5 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-import { getDate } from "../../../functions/getData";
-
 import { Colors } from "../../../constants/styles";
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -13,7 +11,7 @@ function DeadlinInput({ handleInput, value, name }) {
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => handleInput(name, text)}
-                    value={value ? value : getDate()}
+                    value={value}
                 />
                 <FontAwesome name="clock-o" size={24} color="black" />
             </View>

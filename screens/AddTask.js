@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import SavedEditedScreen from "./SavedEditedScreen";
+import { useDispatch, useSelector } from "react-redux";
+import { useRoute } from "@react-navigation/native";
+import { goToRef } from "../redux/slices/imageSlice";
+
 import TaskNameInput from "../components/Inputs/AddTasks/TaskNameInput";
 import DateInput from "../components/Inputs/AddTasks/DateInput";
 import DeadlinInput from "../components/Inputs/AddTasks/DeadlineInput";
@@ -14,19 +17,30 @@ import CreateEditButton from "../components/UI/CreateEditButton";
 import DisabledCreateEditButton from "../components/UI/DisabledCreateEditButton";
 import GoBackButton from "../components/UI/GoBackButton";
 
-import { createTask } from "../services/taskServices";
+import { createTask, editTask } from "../services/taskServices";
+import { getDate } from "../functions/getData";
 
 import { validateValues } from "../functions/validateValues";
 
-import { constructor } from "../constants/constructor";
 import { Colors } from "../constants/styles";
 
 function AddTask() {
-    const [values, setValues] = useState(constructor);
-    const [send, setSend] = useState(false);
+    const task = useSelector((state) => state.refToTalkWithMe.refToContact);
+    const route = useRoute();
+    const { newValue } = route.params || {};
+
+    const [values, setValues] = useState({
+        title: newValue === 'edit' ? task.title : '',
+        date: newValue === 'edit' ? task.date : getDate(),
+        deadline: newValue === 'edit' ? task.deadline : getDate(),
+        description: newValue === 'edit' ? task.description : '',
+        complete: newValue === 'edit' ? task.complete : null,
+        paid: newValue === 'edit' ? task.paid : null,
+    });
     const [disabledColor, setDisabledColor] = useState('');
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     function handleInput(name, value) {
         setValues(prevValues => ({
@@ -35,16 +49,10 @@ function AddTask() {
         }));
     };
 
-    function handleSetSend() {
-        setSend(false);
-        navigation.navigate('AllTasks')
-    }
-
     async function onHandleCreateNewTask() {
         try {
             await createTask(values);
-            setValues(constructor);
-            setSend(true);
+            navigation.navigate('Success');
         } catch (error) {
             Alert.alert(
                 'Create Task Failed!',
@@ -53,19 +61,33 @@ function AddTask() {
         }
     };
 
+    async function onHandleEditTask() {
+        try {
+            await editTask(task.id, values);
+            navigation.navigate('Success');
+        } catch (error) {
+            Alert.alert(
+                'Edit Task Failed!',
+                'Could not edit task, please check you inputs and try again later!'
+            )
+        }
+    };
+
     function onHandleDisabledButton() {
         setDisabledColor('#FD9E9E')
     }
 
-    if (send) {
-        return <SavedEditedScreen handleSetSend={handleSetSend} />
-    }
+    useEffect(() => {
+        if(newValue === 'add') {
+            dispatch(goToRef([]));
+        }
+    }, [newValue]);
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <GoBackButton />
-                <Text style={styles.headerText}>Add Task</Text>
+                <Text style={styles.headerText}>{newValue === 'edit' ? 'Edit' : 'Add'} Task</Text>
             </View>
             <View style={styles.main}>
                 <TaskNameInput handleInput={handleInput} value={values.title} name='title' disabledColor={disabledColor} />
@@ -77,12 +99,12 @@ function AddTask() {
                 <View style={styles.createButtonWrapper}>
                     {validateValues(values) ?
                         <CreateEditButton
-                            text="CREATE"
-                            onPress={onHandleCreateNewTask}
+                            text={newValue === 'edit' ? 'EDIT' : 'CREATE'}
+                            onPress={newValue === 'edit' ? onHandleEditTask : onHandleCreateNewTask}
                         />
                         :
                         <DisabledCreateEditButton
-                            text='CREATE'
+                            text={newValue === 'edit' ? 'EDIT' : 'CREATE'}
                             onPress={onHandleDisabledButton}
                         />
                     }

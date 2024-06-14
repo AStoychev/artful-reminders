@@ -1,18 +1,31 @@
 import { useState } from "react";
 import { View, Pressable, Text, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+import { useDispatch } from "react-redux";
+import { goToRef } from "../../redux/slices/imageSlice";
+import { useSelector } from "react-redux";
 
 import Details from "../../screens/Details";
 
 function Card({ items }) {
     const [task, setTask] = useState();
+    const navigate = useNavigation();
+
+    const dispatch = useDispatch();
+
+    // function onHandleRef() {
+    //     dispatch(goToRef('Yes'))
+    // };
+
+    // function onHandleClear() {
+    //     dispatch(clearRef('No'))
+    // };
 
     function handlePress(item) {
-        setTask(item)
+        dispatch(goToRef(item))
+        navigate.navigate('Details')
     };
-
-    if (task) {
-        return <Details task={task} />
-    }
 
     return (
         <Pressable style={({ pressed }) => pressed && styles.press} onPress={() => handlePress(items)}>

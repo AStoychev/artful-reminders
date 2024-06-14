@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { View, ScrollView, Text, FlatList, StyleSheet } from "react-native";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
+
+import { useRoute } from "@react-navigation/native";
 
 import GoBackButton from "../components/UI/GoBackButton";
 import Card from "../components/Card/Card";
@@ -12,19 +14,23 @@ import { Colors } from "../constants/styles";
 function AllTasks() {
     const [tasks, setTastks] = useState();
 
+    const route = useRoute();
+    const { newValue } = route.params || {};
+
     useEffect(() => {
         async function getTask() {
             try {
-                const tasks = await getAll();
-                setTastks(tasks);
+                const task = await getAll();
+                setTastks(task);
             } catch (error) {
                 console.error('Error')
             }
         }
         getTask()
-    }, []);
+    }, [newValue]);
 
     return (
+
         <View style={styles.container}>
             <View style={styles.innerContainerTop}>
                 <GoBackButton screen="Home" />
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         textAlign: 'center',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         backgroundColor: Colors.purpleBackground,
         // borderBottomLeftRadius: 100,
         // borderBottomRightRadius: 100,

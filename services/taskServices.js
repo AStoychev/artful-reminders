@@ -8,6 +8,15 @@ export async function createTask(taskData) {
     return id;
 };
 
+export async function editTask(id, taskData) {
+    const response = await axios.put(URL + `/task/${id}.json`, taskData);
+    return response.data;
+};
+
+export async function deleteTask(id) {
+    axios.delete(URL + `/task/${id}.json`);
+};
+
 export async function getAll() {
     const response = await axios.get(URL + '/task.json');
     const tasks = [];
@@ -16,7 +25,7 @@ export async function getAll() {
         const taskObject = {
             id: key,
             title: response.data[key].title,
-            date: response.data[key].data,
+            date: response.data[key].date,
             deadline: response.data[key].deadline,
             description: response.data[key].description,
             complete: response.data[key].complete,
