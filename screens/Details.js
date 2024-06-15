@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { View, Pressable, ScrollView, Text, StyleSheet } from "react-native";
+import { View, Pressable, ScrollView, Text, Alert, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
@@ -28,12 +28,19 @@ const Details = () => {
 
     function onDelete(state) {
         if (state) {
-            deleteTask(task.id);
-            navigation.navigate('AllTasks', { newValue: task });
+            try {
+                deleteTask(task.id);
+                navigation.navigate('AllTasks', { newValue: task });
+            } catch (error) {
+                Alert.alert(
+                    'Delete Task Failed!',
+                    'Could not delete task, try again later!'
+                )
+            }
         } else {
             setDeleteModal(false);
         }
-    }
+    };
 
     return (
         <View style={styles.container}>

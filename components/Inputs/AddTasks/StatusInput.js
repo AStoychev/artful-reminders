@@ -6,23 +6,23 @@ import CheckButton from "../../UI/CheckButton";
 
 import { Colors } from "../../../constants/styles";
 
-const RED = {backgroundColor: '#FF2D2D', color: '#FFFFFF'}
+const RED = { backgroundColor: '#FF2D2D', color: '#FFFFFF' }
 const BLUE = { backgroundColor: '#E1E4F8', color: '#8885DA' };
 
-function StatusInput({handleInput, name}) {
-    const [status, setStatus] = useState(null);
+function StatusInput({ handleInput, name, value, newValue }) {
+    const [status, setStatus] = useState(null || value);
 
     function handleStatus(data) {
         setStatus(data)
         handleInput(name, data)
-    }
+    };
 
     return (
         <View style={styles.inputWrapper}>
             <Text style={styles.label}>STATUS</Text>
             <View style={styles.buttonWrapper}>
-                <CheckButton status={status} title="COMPLETED" backgroundColor={BLUE.backgroundColor} color={BLUE.color} handleStatus={handleStatus}/>
-                <CheckButton status={status} title="IN PROGRESS" backgroundColor={RED.backgroundColor} color={RED.color} handleStatus={handleStatus}/>
+                <CheckButton status={status} title="COMPLETED" backgroundColor={BLUE.backgroundColor} color={BLUE.color} handleStatus={handleStatus} />
+                <CheckButton status={status} title="IN PROGRESS" backgroundColor={RED.backgroundColor} color={RED.color} handleStatus={handleStatus} />
             </View>
         </View>
     )

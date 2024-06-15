@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,8 +7,13 @@ import { useSelector } from "react-redux";
 
 import Details from "../../screens/Details";
 
+const RED = { backgroundColor: '#FF2D2D', color: '#FFFFFF' };
+const BLUE = { backgroundColor: '#E1E4F8', color: '#8885DA' };
+const ORANGE = { backgroundColor: '#F0E6EC', color: '#FA6A00' };
+const GREEN = { backgroundColor: '#2CC09C', color: '#FFFFFF' };
+const WHITE = { backgroundColor: '#FFFFFF', color: '#FFFFFF' };
+
 function Card({ items }) {
-    const [task, setTask] = useState();
     const navigate = useNavigation();
 
     const dispatch = useDispatch();
@@ -32,8 +36,8 @@ function Card({ items }) {
             <View style={[styles.taskWrapper, styles.shadowProp]}>
                 <Text>{items.title}</Text>
                 <View style={styles.label}>
-                    <Text style={styles.labelText}>{items?.complete}</Text>
-                    <Text style={styles.labelText}>{items?.paid}</Text>
+                    <Text style={[styles.labelText, items?.complete === 'COMPLETED' ? BLUE : RED, !items?.complete && WHITE]}>{items?.complete}</Text>
+                    <Text style={[styles.labelText, items?.paid === 'PAID' ? ORANGE : GREEN, !items?.paid && WHITE]}>{items?.paid}</Text>
                 </View>
             </View>
         </Pressable>
@@ -74,5 +78,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         color: 'white',
         borderRadius: 6,
+        padding: 3
     }
 })

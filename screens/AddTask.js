@@ -94,8 +94,8 @@ function AddTask() {
                 <DateInput handleInput={handleInput} value={values.date} name='date' />
                 <DeadlinInput handleInput={handleInput} value={values.deadline} name='deadline' />
                 <DescriptionInput handleInput={handleInput} value={values.description} name='description' />
-                <StatusInput handleInput={handleInput} name='complete' />
-                <PaymentInput handleInput={handleInput} name='paid' />
+                <StatusInput handleInput={handleInput} value={values.complete} newValue={newValue} name='complete'/>
+                <PaymentInput handleInput={handleInput} value={values.paid} newValue={newValue} name='paid'/>
                 <View style={styles.createButtonWrapper}>
                     {validateValues(values) ?
                         <CreateEditButton

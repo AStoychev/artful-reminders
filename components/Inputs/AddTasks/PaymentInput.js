@@ -9,13 +9,13 @@ import { Colors } from "../../../constants/styles";
 const ORANGE = { backgroundColor: '#F0E6EC', color: '#FA6A00' };
 const GREEN = { backgroundColor: '#2CC09C', color: '#FFFFFF' };
 
-function PaymentInput({ handleInput, name }) {
-    const [status, setStatus] = useState(null);
+function PaymentInput({ handleInput, name, value, newValue }) {
+    const [status, setStatus] = useState(null || value);
 
     function handleStatus(data) {
         setStatus(data)
         handleInput(name, data)
-    }
+    };
 
     return (
         <View style={styles.inputWrapper}>

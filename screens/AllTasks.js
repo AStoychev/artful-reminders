@@ -38,8 +38,12 @@ function AllTasks() {
                 <Text></Text>
             </View>
             <View style={styles.innerContainerBottom}>
+
                 <ScrollView>
                     <View style={styles.scrolling}>
+                        {!tasks?.length &&
+                            <Text style={styles.emptyTask}>No tasks yet!</Text>
+                        }
                         {tasks?.map((items) => (
                             <Card items={items} key={items.id} />
                         ))}
@@ -88,5 +92,10 @@ const styles = StyleSheet.create({
     scrolling: {
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    emptyTask: {
+        fontSize: 15,
+        fontWeight: '700',
+        paddingTop: 10
     }
 })
