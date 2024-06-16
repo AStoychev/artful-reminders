@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
 import DeleteModal from "../components/Modal/DeleteModal";
+import DeleteModalLight from "../components/Modal/DeleteModalLight";
 import GoBackButton from "../components/UI/GoBackButton";
 
 import { deleteTask } from "../services/taskServices";
@@ -26,20 +27,21 @@ const Details = () => {
         setDeleteModal(true);
     };
 
+    function closeModal() {
+        setDeleteModal(false);
+    };
+
     function onDelete(state) {
-        if (state) {
-            try {
-                deleteTask(task.id);
-                navigation.navigate('AllTasks', { newValue: task });
-            } catch (error) {
-                Alert.alert(
-                    'Delete Task Failed!',
-                    'Could not delete task, try again later!'
-                )
-            }
-        } else {
-            setDeleteModal(false);
+        try {
+            deleteTask(task.id);
+            navigation.navigate('AllTasks', { newValue: task });
+        } catch (error) {
+            Alert.alert(
+                'Delete Task Failed!',
+                'Could not delete task, try again later!'
+            )
         }
+        setDeleteModal(false);
     };
 
     return (
@@ -50,36 +52,34 @@ const Details = () => {
                 <Text></Text>
             </View>
 
-            {
-                deleteModal ? <DeleteModal title={task.title} onDelete={onDelete} />
-                    :
-                    <View style={styles.innerContainerBottom}>
-                        <View>
-                            <ScrollView>
-                                <View style={styles.scrolling}>
-                                    <Text style={styles.text}>Date:
-                                        <Text style={styles.textInfo}>{task.date}</Text>
-                                    </Text>
-                                    <Text style={styles.text}>Deadline:
-                                        <Text style={styles.textInfo}>{task.deadline}</Text>
-                                    </Text>
-                                    <Text style={styles.text}>Description:
-                                        <Text style={styles.textInfo}>{task.description}</Text>
-                                    </Text>
-                                </View>
-                            </ScrollView>
-                        </View>
+            <DeleteModalLight deleteModal={deleteModal} onDelete={onDelete} closeModal={closeModal} />
 
-                        <View style={styles.footer}>
-                            <Pressable onPress={onHandleEdit}>
-                                <AntDesign name="edit" size={30} color="black" />
-                            </Pressable>
-                            <Pressable onPress={onHandleDelete}>
-                                <AntDesign name="delete" size={30} color="black" />
-                            </Pressable>
+            <View style={styles.innerContainerBottom}>
+                <View>
+                    <ScrollView>
+                        <View style={styles.scrolling}>
+                            <Text style={styles.text}>Date:
+                                <Text style={styles.textInfo}>{task.date}</Text>
+                            </Text>
+                            <Text style={styles.text}>Deadline:
+                                <Text style={styles.textInfo}>{task.deadline}</Text>
+                            </Text>
+                            <Text style={styles.text}>Description:
+                                <Text style={styles.textInfo}>{task.description}</Text>
+                            </Text>
                         </View>
-                    </View>
-            }
+                    </ScrollView>
+                </View>
+
+                <View style={styles.footer}>
+                    <Pressable onPress={onHandleEdit}>
+                        <AntDesign name="edit" size={30} color="black" />
+                    </Pressable>
+                    <Pressable onPress={onHandleDelete}>
+                        <AntDesign name="delete" size={30} color="black" />
+                    </Pressable>
+                </View>
+            </View>
         </View>
     )
 }
@@ -88,8 +88,9 @@ export default Details;
 
 const styles = StyleSheet.create({
     container: {
-        position: 'relative',
         flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: Colors.purpleBackground,
         flex: 1,
     },
@@ -107,6 +108,44 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#FFFFFF',
     },
+
+
+
+
+
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContainer: {
+        width: 300,
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    modalMessage: {
+        fontSize: 16,
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+    },
+
+
+
+
+
     press: {
         position: 'relative',
         borderWidth: 3,
