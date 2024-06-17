@@ -60,8 +60,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         backgroundColor: Colors.purpleBackground,
-        // backgroundColor: Colors.primaryDarkWhite,
-        // backgroundColor: '#FFFFFF',
         flex: 1
     },
     innerContainerTop: {
@@ -71,8 +69,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         backgroundColor: Colors.purpleBackground,
-        // borderBottomLeftRadius: 100,
-        // borderBottomRightRadius: 100,
         flex: 1,
     },
     header: {

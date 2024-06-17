@@ -3,9 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useDispatch } from "react-redux";
 import { goToRef } from "../../redux/slices/imageSlice";
-import { useSelector } from "react-redux";
-
-import Details from "../../screens/Details";
 
 const RED = { backgroundColor: '#FF2D2D', color: '#FFFFFF' };
 const BLUE = { backgroundColor: '#E1E4F8', color: '#8885DA' };
@@ -17,14 +14,6 @@ function Card({ items }) {
     const navigate = useNavigation();
 
     const dispatch = useDispatch();
-
-    // function onHandleRef() {
-    //     dispatch(goToRef('Yes'))
-    // };
-
-    // function onHandleClear() {
-    //     dispatch(clearRef('No'))
-    // };
 
     function handlePress(item) {
         dispatch(goToRef(item))

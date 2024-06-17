@@ -4,7 +4,6 @@ import { View, Pressable, ScrollView, Text, Alert, StyleSheet } from "react-nati
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
-import DeleteModal from "../components/Modal/DeleteModal";
 import DeleteModalLight from "../components/Modal/DeleteModalLight";
 import GoBackButton from "../components/UI/GoBackButton";
 
@@ -108,11 +107,6 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#FFFFFF',
     },
-
-
-
-
-
     modalOverlay: {
         flex: 1,
         justifyContent: 'center',
@@ -141,11 +135,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
     },
-
-
-
-
-
     press: {
         position: 'relative',
         borderWidth: 3,

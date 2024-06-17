@@ -1,12 +1,7 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 function HomePageButtons({ icon, text, size, color, onPress }) {
-
-    function handleButton() {
-        
-    }
 
     return (
         <Pressable onPress={onPress} style={({pressed}) => pressed && styles.pressed}>
@@ -30,7 +25,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: '#FFFFFF',
-        // backgroundColor: '#F9EFED',
         flexDirection: 'row',
         borderRadius: 6,
         paddingTop: 10,

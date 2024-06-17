@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         position: 'relative',
         flexDirection: 'column',
         backgroundColor: Colors.purpleBackground,
-        // backgroundColor: '#2A2625',
         flex: 1
     },
     innerContainerTop: {
@@ -55,7 +54,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
-        // backgroundColor: '#E0A583',
         borderBottomLeftRadius: 200,
         borderBottomRightRadius: 200,
         flex: 1
@@ -64,7 +62,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: '700',
         color: '#21B36A',
-        // color: '#000000',
     },
     checkMarkWrapper: {
         position: 'absolute',
@@ -82,7 +79,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap: 50,
         backgroundColor: Colors.purpleBackground,
-        // backgroundColor: '#2A2625',
         flex: 1,
     },
     text: {
