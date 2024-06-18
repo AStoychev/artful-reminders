@@ -3,8 +3,6 @@ import HomePageButtons from "../components/UI/HomePageButtons";
 
 import { useNavigation } from "@react-navigation/native";
 
-import { Colors } from "../constants/styles";
-
 const image = '../assets/backgrounds/One.jpg';
 
 function Home() {

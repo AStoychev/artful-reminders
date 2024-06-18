@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
         paddingLeft: 6,
         paddingRight: 6,
         borderRadius: 6,
-        // borderWidth: 3,
     },
     paid: {
 

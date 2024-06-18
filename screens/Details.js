@@ -50,9 +50,7 @@ const Details = () => {
                 <Text style={styles.header}>{task.title}</Text>
                 <Text></Text>
             </View>
-
             <DeleteModalLight deleteModal={deleteModal} onDelete={onDelete} closeModal={closeModal} />
-
             <View style={styles.innerContainerBottom}>
                 <View>
                     <ScrollView>
@@ -69,7 +67,6 @@ const Details = () => {
                         </View>
                     </ScrollView>
                 </View>
-
                 <View style={styles.footer}>
                     <Pressable onPress={onHandleEdit}>
                         <AntDesign name="edit" size={30} color="black" />

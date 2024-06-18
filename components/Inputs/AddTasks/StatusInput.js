@@ -33,8 +33,6 @@ export default StatusInput;
 const styles = StyleSheet.create({
     inputWrapper: {
         width: '94%',
-        // borderBottomWidth: 1,
-        // borderColor: Colors.primaryDarkWhite,
     },
     label: {
         color: Colors.primaryLabelWhite,

@@ -38,7 +38,6 @@ function AllTasks() {
                 <Text></Text>
             </View>
             <View style={styles.innerContainerBottom}>
-
                 <ScrollView>
                     <View style={styles.scrolling}>
                         {!tasks?.length &&
