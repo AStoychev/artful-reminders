@@ -25,8 +25,12 @@ function Card({ items }) {
             <View style={[styles.taskWrapper, styles.shadowProp]}>
                 <Text>{items.title}</Text>
                 <View style={styles.label}>
-                    <Text style={[styles.labelText, items?.complete === 'COMPLETED' ? BLUE : RED, !items?.complete && WHITE]}>{items?.complete}</Text>
-                    <Text style={[styles.labelText, items?.paid === 'PAID' ? ORANGE : GREEN, !items?.paid && WHITE]}>{items?.paid}</Text>
+                    <Text style={[styles.labelText, items?.complete === 'COMPLETED' ? BLUE : RED, !items?.complete && WHITE]}>
+                        {items?.complete}
+                    </Text>
+                    <Text style={[styles.labelText, items?.paid === 'PAID' ? ORANGE : GREEN, !items?.paid && WHITE]}>
+                        {items?.paid}
+                    </Text>
                 </View>
             </View>
         </Pressable>

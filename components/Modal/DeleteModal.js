@@ -9,10 +9,14 @@ function DeleteModal({ title, onDelete }) {
             <Text style={styles.text}>Are you sure want to delete {title}!</Text>
             <View style={styles.buttonWrapper}>
                 <Pressable style={styles.button} onPress={() => onDelete(true)}>
-                    <Text style={styles.buttonText}>Yes</Text>
+                    <Text style={styles.buttonText}>
+                        Yes
+                    </Text>
                 </Pressable>
                 <Pressable style={styles.button} onPress={() => onDelete(false)}>
-                    <Text style={styles.buttonText}>No</Text>
+                    <Text style={styles.buttonText}>
+                        No
+                    </Text>
                 </Pressable>
             </View>
         </View>

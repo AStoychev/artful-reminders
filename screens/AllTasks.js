@@ -30,7 +30,6 @@ function AllTasks() {
     }, [newValue]);
 
     return (
-
         <View style={styles.container}>
             <View style={styles.innerContainerTop}>
                 <GoBackButton screen="Home" />
