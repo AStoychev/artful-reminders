@@ -78,7 +78,7 @@ function AddTask() {
     }
 
     useEffect(() => {
-        if(newValue === 'add') {
+        if (newValue === 'add') {
             dispatch(goToRef([]));
         }
     }, [newValue]);
@@ -90,13 +90,40 @@ function AddTask() {
                 <Text style={styles.headerText}>{newValue === 'edit' ? 'Edit' : 'Add'} Task</Text>
             </View>
             <View style={styles.main}>
-                <TaskNameInput handleInput={handleInput} value={values.title} name='title' disabledColor={disabledColor} />
-                <DateInput handleInput={handleInput} value={values.date} name='date' />
-                <DeadlinInput handleInput={handleInput} value={values.deadline} name='deadline' />
-                <DescriptionInput handleInput={handleInput} value={values.description} name='description' />
-                <StatusInput handleInput={handleInput} value={values.complete} newValue={newValue} name='complete'/>
-                <PaymentInput handleInput={handleInput} value={values.paid} newValue={newValue} name='paid'/>
-                <View style={styles.createButtonWrapper}>
+                <TaskNameInput
+                    handleInput={handleInput}
+                    value={values.title}
+                    name='title'
+                    disabledColor={disabledColor}
+                />
+                <DateInput
+                    handleInput={handleInput}
+                    value={values.date}
+                    name='date'
+                />
+                <DeadlinInput
+                    handleInput={handleInput}
+                    value={values.deadline}
+                    name='deadline'
+                />
+                <DescriptionInput
+                    handleInput={handleInput}
+                    value={values.description}
+                    name='description'
+                />
+                <StatusInput
+                    handleInput={handleInput}
+                    value={values.complete}
+                    newValue={newValue}
+                    name='complete'
+                />
+                <PaymentInput
+                    handleInput={handleInput}
+                    value={values.paid}
+                    newValue={newValue}
+                    name='paid'
+                />
+                <View>
                     {validateValues(values) ?
                         <CreateEditButton
                             text={newValue === 'edit' ? 'EDIT' : 'CREATE'}
@@ -144,7 +171,4 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 50,
         borderTopEndRadius: 50,
     },
-    createButtonWrapper: {
-
-    }
 })
