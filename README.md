@@ -1,6 +1,6 @@
 Simple mobile task application for NikoletaArts
 
-**Some screenshots:**
+<p align="center">**Some screenshots:**</p>
 
 **Home**
 
