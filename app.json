@@ -25,7 +25,15 @@
     },
     "plugins": [
       "expo-asset",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./local/assets/icpn.png",
+          "color": "#ffffff",
+          "defaultChannel": "default"
+        }
+      ]
     ]
   }
 }
